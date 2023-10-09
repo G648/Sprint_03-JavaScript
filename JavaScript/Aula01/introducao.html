@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntroducaoJS</title>
+</head>
+<!-- Quando a página for carregada, vai aparecer um aviso! -->
+<body onload="alert('Página carregada com sucesso!')">
+    <header>
+
+    </header>
+    <main>
+        <h1>Introdução ao JavaScript</h1>
+
+        <form action="">
+            <label for="">Informe seu nome</label>
+            <input type="text" id="nome" placeholder="digite seu nome">
+        </form>
+
+        <!-- Botão é uma representativade de um evento -->
+        <!-- <button class="botao" onclick="alert('Bom dia, meu consagrado!')">
+            Cadastrar
+        </button> -->
+        <button class="botao" onclick="saudacao()">
+            Cadastrar
+        </button>
+
+        <button class="data" onclick="this.innerHTML = Date()">
+            Data
+        </button>
+    </main>
+    <footer>
+
+    </footer>
+
+    <style>
+        .botao{
+            cursor: pointer;
+        }
+
+        .data{
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function saudacao()
+        {
+            // window foi deixado de lado, document representa nossa página web, document by id (pega a tag que declaramos)
+            var nome = document.getElementById('nome').value;
+
+            //literal string
+            alert(`Bom dia ${nome}, meu consagrado!`)
+            // alert('Bom dia, meu consagrado,' + nome)
+            // console.log(nome.value)
+        }
+    </script>
+</body>
+</html>

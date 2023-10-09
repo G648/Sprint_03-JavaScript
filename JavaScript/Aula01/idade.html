@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idade</title>
+</head>
+<body>
+    <h1>
+        Birthday Calc
+    </h1>
+
+    <label for="">Informe a sua idade</label>
+    <input type="number" name="idade" id="idade" placeholder="Informe sua idade aqui!">
+
+    <button onclick="idade()" type="submit">
+        Calcular
+    </button>
+
+    <script>
+        var ano = 2023;
+
+        function idade()
+        {
+            let idade = parseInt(document.getElementById('idade').value);
+
+            // const é para resultados fixos
+            const calcIdade = ano - idade;
+
+            alert(`o ano do seu nascimento é: ${calcIdade}`);
+        }
+    </script>
+</body>
+</html>
