@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>string</title>
+    <script src="./scripts/strings.js"></script>
+</head>
+
+<body>
+    <!-- Criar um formulário para receber o nome do usuário -->
+    <!-- substituir o nome por um nickname -->
+    <!-- ao clicar no botão o nickname deverá ser exibido na tela -->
+
+    <section>
+        <form action="" onsubmit="nickName()">
+            <fieldset>
+                <legend>Formulário</legend>
+
+                <label for="">Informe seu nome:</label>
+                <input type="text" name="nome" id="nome">
+
+                <br><br>
+
+                <label for="">Informe o nickname</label>
+                <input type="text" name="nickname" id="nickname">
+
+                <br><br>
+
+                <p>nome trocado com sucesso! boa tarde: <strong id="resultNick"></strong></p>
+
+                <!-- <label for="">Qual operação você deseja fazer ?</label>
+                <select name="operacao" id="operacao">
+                    <option value="selecione" disabled selected >Selecione:</option>
+                    <option value="nickname">Trocar nome</option>
+                </select> -->
+
+                <!-- <br><br> -->
+
+                <button id="botao">
+                    Trocar nickname
+                </button>
+            </fieldset>
+        </form>
+    </section>
+</body>
+
+</html>

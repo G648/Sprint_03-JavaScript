@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <script src="./scripts/calculadora.js"></script>
+    <link rel="stylesheet" href="./css/calculadora.css">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
         Simple Calc
     </h1>
 
-    <form action="/calculadora.html" method="get" onsubmit="Calcular()">
+    <form action="/calculadora.html" method="get" onsubmit="Calcular()" class="form">
 
         <fieldset>
             <legend>Calculadora</legend>
@@ -27,6 +29,10 @@
             <input type="number" id="n2">
 
             <br><br>
+
+            <p>Resultado: <strong id="result"></strong></p>
+
+            <br>
 
             <label for="">Qual operação você deseja realizar? </label>
             <select name="operacao" id="operacao">
@@ -45,68 +51,7 @@
         </fieldset>
 
     </form>
-    <script>
-        function Calcular() {
-            event.preventDefault();
-
-            //criar uma variável para cada número
-            let n1 = parseInt(document.getElementById('n1').value);
-            let n2 = parseInt(document.getElementById('n2').value);
-            let operacao = document.getElementById('operacao').value;
-            let resultado;
-
-            // if (operacao == '+') {
-            //     //criar uma variável com o resultado da soma
-            //     resultado = somar(n1, n2);
-            // }else if (operacao == '-') {
-            //     resultado = subtrair(n1, n2);
-            // }
-
-            switch (operacao) {
-                case 'somar':
-                    resultado = somar(n1, n1);
-                    //exibir o resultado em uma alert -> utilizando a interpolação
-                    alert(`A soma dos dois números é de: ${resultado}`)
-                    break;
-                case 'subtrair':
-                    resultado = subtrair(n1, n2);
-                    alert(`A subtração dos dois números é de: ${resultado}`)
-                    break;
-                case 'dividir':
-                    resultado = dividir(n1, n2);
-                    alert(`A divisão dos dois números é de: ${resultado}`)
-                    break;
-                case 'multiplicar':
-                    resultado = multiplicar(n1, n2);
-                    alert(`A multiplicação dos dois números é de: ${resultado}`)
-                    break;
-                default:
-                    alert('está dando erro no código')
-                    break;
-            }
-
-
-            //exibir o resultado em uma alert -> utilizando a interpolação
-            // alert(`A Subtração dos dois números é de: ${resultado}`)
-        }
-
-        function subtrair(numero01, numero02) {
-            return numero01 - numero02;
-        }
-
-        function somar(numero01, numero02) {
-            return numero01 + numero02;
-        }
-
-        function multiplicar(numero01, numero02) {
-            return numero01 * numero02;
-        }
-
-        function dividir(numero01, numero02) {
-            return numero01 / numero02;
-        }
-
-    </script>
+    
 
 </body>
 
