@@ -17,6 +17,17 @@
 
         frutas.sort();
 
+        console.log();
+        console.log();
+
+        for (let index = 0; index < frutas.length; index++) {
+            console.log(`Frutas${index + 1} ${frutas[index]}`);
+        }
+
+        frutas.forEach(function(fruta, i) {
+            console.log(`Frutas{${i} ${fruta}`);
+        });
+
     </script>
 </body>
 </html>

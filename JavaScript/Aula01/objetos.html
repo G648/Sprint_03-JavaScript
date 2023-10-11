@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>objetos</title>
+</head>
+
+<body>
+
+    <script>
+
+        //objeto literal
+        let guilherme = {
+            nome : "Guilherme",
+            sobrenome : "Amorim",
+            idade: 21
+        };
+
+        guilherme.cpf = "123456543985";
+
+        //objeto tradicional
+        let arthur = new Object();
+        arthur.nome = "Arthur";
+        arthur.sobrenome = "Fiorentino";
+
+        console.log(guilherme);
+        console.log(arthur);
+
+        let listaNomes = [guilherme.nome, arthur.nome]
+
+        for (let index = 0; index < listaNomes.length; index++) {
+            console.log(`Nome ${index + 1 }: ${listaNomes[index]}`);
+        }
+
+        listaNomes.forEach(function(nomes, i) {
+            console.log(`${nomes}`);
+        });
+    </script>
+
+</body>
+
+</html>
