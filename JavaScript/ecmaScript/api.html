@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const url = "https://viacep.com.br/ws/01209010/json/";
+
+        fetch(url)
+        .then( (resposta) => {
+            //objeto promise resolvido(headers, body)
+            return resposta.json();
+            //vai converter o json para objeto
+        })
+        .then( (dados) => {
+            console.log(
+                `
+                    CEP: ${dados.cep}  
+                    Endereço ${dados.logradouro}
+                    Bairro ${dados.bairro}
+                    Localidade ${dados.localidade}
+                `
+            );
+        })
+        .catch();
+
+
+
+
+        // const retorno = fetch('https://viacep.com.br/ws/09182020/json/')
+        // .then((reponse) =>{
+        //     return reponse.json();
+        // }).then((dados) => {
+        //     console.log(dados);
+        //     //outra forma de trazer os dados usando o destructured
+        // // }).then(({cep, logradouro}) => {
+        // //     console.log(cep);
+        // //     console.log(logradouro);
+        // }).catch(() =>{
+        //     console.log("Deu ruim");
+        // })
+
+        // console.log(retorno);
+    </script>
+</body>
+
+</html>
