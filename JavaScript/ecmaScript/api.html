@@ -11,23 +11,37 @@
     <script>
         const url = "https://viacep.com.br/ws/01209010/json/";
 
-        fetch(url)
-        .then( (resposta) => {
-            //objeto promise resolvido(headers, body)
-            return resposta.json();
-            //vai converter o json para objeto
-        })
-        .then( (dados) => {
-            console.log(
-                `
-                    CEP: ${dados.cep}  
-                    Endereço ${dados.logradouro}
-                    Bairro ${dados.bairro}
-                    Localidade ${dados.localidade}
-                `
-            );
-        })
-        .catch();
+        // fetch(url)
+        // .then( (resposta) => {
+        //     //objeto promise resolvido(headers, body)
+        //     return resposta.json();
+        //     //vai converter o json para objeto
+        // })
+        // .then( (dados) => {
+        //     console.log(
+        //         `
+        //             CEP: ${dados.cep}  
+        //             Endereço ${dados.logradouro}
+        //             Bairro ${dados.bairro}
+        //             Localidade ${dados.localidade}
+        //         `
+        //     );
+        // })
+        // .catch();
+
+
+        async function chamarAPI(api) {
+            try {   
+                const promise = await fetch(api)
+                const dados = await promise.json();
+                console.log(dados);
+
+            } catch (error) {
+                console.log("Deu ruim na API", error);
+            }
+        }
+
+        chamarAPI(url); // chamada da api
 
 
 
