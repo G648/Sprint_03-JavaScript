@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="p-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade</title>
+    <script src="./atividade.js"></script>
+</head>
+
+<body>
+    <!-- criar um cadastro de frutas que exiba as
+    frutas cadastradas em uma lista ul
+
+    o programa deverá ter um formulário web.
+    o programa deverá utilizar arrays
+    a lista deverá aparecer em ordem alfabética
+    voce deverá exibir os dados com foreach e 
+    utilizar arrow functions
+-->
+
+    <form action="" method="post" onsubmit="listarFrutas(event)">
+        <fieldset>
+            <legend>Formulário de Frutas</legend>
+
+            <div>
+                <label for="">Digite o nome da fruta:</label>
+                <br>
+                <input type="text" name="nome" id="nome" placeholder="Informe o nome da fruta">
+            </div>
+            <!-- <br>
+            <br>
+            <div>
+                <label for="">Informe a cor da fruta:</label>
+                <br>
+                <input type="text" name="cor" id="cor" placeholder="Informe a cor da fruta">
+            </div> -->
+            <br>
+            <button type="submit">Cadastrar</button>
+        </fieldset>
+    </form>
+
+    <ul id="corpo-lista">
+        <!-- Informações das listas de frutas -->
+    </ul>
+</body>
+
+</html>

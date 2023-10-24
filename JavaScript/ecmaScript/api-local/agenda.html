@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./helloApi.js"></script>
+    <title>Agenda de Contatos</title>
+
+</head>
+<body>
+    <form onsubmit="cadastrar(event)">
+
+        <label for="nome">Nome</label>
+        <input type="text" placeholder="digite seu nome" id="nome" required>
+        <br><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="digite seu email" id="email" required>
+        <br><br>
+
+        <label for="cep">CEP</label>
+        <input autocomplete="off" type="number" onblur="buscarEndereco(this.value)" placeholder="Insira seu cep" id="cep" required>
+        <br><br>
+
+        <label for="endereco">Endereço</label>
+        <input type="text" placeholder="Insira seu endereço" id="endereco" required>
+        <br><br>
+
+        <label for="numero">Número</label>
+        <input type="number" placeholder="insira seu telefone" id="numero" required>
+        <br><br>
+
+        <label for="cidade">Cidade</label>
+        <input type="text" placeholder="Insira sua cidade" id="cidade" required>
+        <br><br>
+
+        <label for="estado">Estado</label>
+        <input type="text" placeholder="Insira seu estado" id="estado" required>
+        <br><br>
+
+        <button>Cadastrar</button>
+    </form>
+</body>
+</html>
