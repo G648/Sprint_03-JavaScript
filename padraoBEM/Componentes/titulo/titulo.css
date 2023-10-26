@@ -1,0 +1,28 @@
+.titulo {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo__text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.titulo__linha {
+    width: 200px;
+    border: 2px solid red;
+    border-radius: 10px;
+}
+
+.titulo__text--branco{
+    color: white;
+}
+
+.titulo__linha--branca{
+    border-color: white;
+}
