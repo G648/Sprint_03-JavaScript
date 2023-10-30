@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-font: 'Kufam', sans-serif;
+    --main-color: #33E29A;
+}
+
+
+html {
+    background-image: url(Assets/img/Background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-grid {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.links-header {
+    width: 100vw;
+    height: 210px;
+}
+
+.logotype {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logotype>img {
+    width: 150px;
+    height: 150px;
+}
+
+.info-header {
+    font-size: 25px;
+    text-transform: uppercase;
+    display: flex;
+    height: 95px;
+    width: 100vw;
+    align-items: center;
+    font-family: var(--main-font);
+}
+
+.list-style {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.list-style>li {
+    list-style-type: none;
+}
+
+.list-style>li>a {
+    color: black;
+    text-decoration: none;
+}
+
+.list-style>li>a:hover {
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 8px;
+    color: var(--main-color);
+}
+
+/* main form */
+
+.card-form {
+   
+    margin-top: 5%;
+    width: 1228px;
+    height: 651px;
+    background: rgba(38, 38, 38, 0.80);
+    border: 2px solid rgba(115, 115, 115, 0.50);
+    border-radius: 12px;
+    filter: blur(0.4px);
+}
+
+.logo-form{
+    display: flex;
+    justify-content: right;
+    margin-right: 35% ;
+    margin-top: 5%;
+}
+
+.card-flex{
+    height: 550px;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 2px solid white; */
+}
+
+.info-card{
+    /* border: 2px solid red; */
+    height: 550px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
