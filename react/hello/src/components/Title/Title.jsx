@@ -1,7 +1,7 @@
 import React from "react";
 import './Title.css'
 
-const title = (props) => {
+const Title = (props) => {
 
     return(
         <h1 className="title">Hello {props.text}</h1>
@@ -9,4 +9,4 @@ const title = (props) => {
 
 }
 
-export default title;
+export default Title;
