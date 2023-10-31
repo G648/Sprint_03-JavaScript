@@ -2,14 +2,15 @@ import React from 'react';
 import Titulo from '../../Components/Titulo/Titulo';
 import Header from '../../Components/Header/Header';
 
-const LoginPage = () => {
+const EventoPage = () => {
     return (
         <div>
-            <Titulo titulo='Welcome LoginPage' />
 
-             <Header />
+            <Titulo titulo="Olá página de evento" />
+
+            <Header />
         </div>
     );
 };
 
-export default LoginPage;
+export default EventoPage;

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.allCards{
+    display: flex;
+    justify-content: space-evenly;
+}
+.card{
+    height: 250px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #821B47;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.card__text{
+    font-family: 'Poppins';
+    font-size: 20px;
+}
+
+.card__info{
+    font-family: 'Poppins';
+    font-size: 15px;
+    text-align: justify;
+    overflow-y: scroll;
+    width: 210px ;
+    height: 118px ;
+    padding-right: 10px;
+}
+
+.card__info::-webkit-scrollbar{
+    
+    width: 5px;
+    height: 10px;
+    background-color: gray;
+}
+
+.card__info::-webkit-scrollbar-thumb {
+    background-color: #333; /* Cor do "ponteiro" da barra de rolagem */
+}
+
+.card__btn{
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    color: #B51D44;
+    cursor: pointer;
+}
+
+.card__btn--disabled:hover{
+    opacity: .5;
+    transition: all 0.2s;
+}
+
+.card__btn--disabled{
+    cursor: not-allowed;
+    color: lightgrey;
+}
