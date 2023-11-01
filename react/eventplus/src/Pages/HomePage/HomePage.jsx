@@ -2,14 +2,12 @@ import React from 'react';
 import Container from '../../Components/Container/Container';
 import CardEvento from '../../Components/CardEvento/CardEvento';
 import Titulo from '../../Components/Titulo/Titulo';
-import Header from '../../Components/Header/Header';
+
 
 const HomePage = () => {
     return (
         <div>
             <Titulo titulo='Fazendo framework'/>
-
-            <Header />
 
             <Container>
 

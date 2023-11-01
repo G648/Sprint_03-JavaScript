@@ -1,0 +1,12 @@
+.footer{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-rights {
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    text-align: center;
+}

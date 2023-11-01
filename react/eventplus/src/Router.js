@@ -8,11 +8,14 @@ import LoginPage from "./Pages/LoginPage/LoginPage"
 import EventoPage from './Pages/EventoPage/EventoPage';
 import TipoEventoPage from './Pages/TipoEventoPage/TipoEventoPage';
 import TestePage from './Pages/Teste/TestePage';
+import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 
 const Router = () => {
     return (
         <div>
             <BrowserRouter>
+            <Header/>
                 <Routes>
                     <Rota element={<HomePage/>} path="/" exact/>
                     <Rota element={<LoginPage/>} path="/Login"/>
@@ -20,6 +23,7 @@ const Router = () => {
                     <Rota element={<TipoEventoPage/>} path="/TiposEvento"/>
                     <Rota element={<TestePage/>} path="/Teste"/>
                 </Routes>
+               <Footer/>
             </BrowserRouter>
         </div>
     );

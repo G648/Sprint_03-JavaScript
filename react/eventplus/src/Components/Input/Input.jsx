@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./Input.css"
 
-const Input = ({onChange, type, placeholder, name, id, value }) => {
+const Input = ({ onChange, type, placeholder, name, id, value }) => {
     // const [num1, setNum1] = useState()
 
     return (

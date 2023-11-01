@@ -1,6 +1,6 @@
 import React from 'react';
 import Titulo from '../../Components/Titulo/Titulo';
-import Header from '../../Components/Header/Header';
+
 
 const EventoPage = () => {
     return (
@@ -8,7 +8,7 @@ const EventoPage = () => {
 
             <Titulo titulo="Olá página de evento" />
 
-            <Header />
+           
         </div>
     );
 };
