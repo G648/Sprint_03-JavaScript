@@ -1,10 +1,9 @@
 import React from 'react';
-import './Titulo.css'
-
+import "./Titulo.css"
 const Titulo = (props) => {
     return (
         <div>
-            <h1 className='titulo'>{props.titulo}</h1>
+            <h1 className='title'>{props.nome}</h1>
         </div>
     );
 };

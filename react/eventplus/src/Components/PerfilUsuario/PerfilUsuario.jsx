@@ -1,9 +1,8 @@
 import React from 'react';
-import './PerfilUsuario.css'
-
+import "./PerfilUsuario"
 const PerfilUsuario = () => {
     return (
-        <div className=''>
+        <div>
             
         </div>
     );

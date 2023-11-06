@@ -1,12 +1,12 @@
 import React from 'react';
 import Titulo from '../../Components/Titulo/Titulo';
 
-const TipoEventoPage = () => {
+const Home = () => {
     return (
         <div>
-            <Titulo titulo='welcome TipoEventoPage'/>
+            <Titulo nome="Página Home"/>
         </div>
     );
 };
 
-export default TipoEventoPage;
+export default Home;

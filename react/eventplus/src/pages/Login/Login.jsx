@@ -1,16 +1,11 @@
 import React from 'react';
 import Titulo from '../../Components/Titulo/Titulo';
-
-
-const EventoPage = () => {
+const Login = () => {
     return (
         <div>
-
-            <Titulo titulo="Olá página de evento" />
-
-           
+            <Titulo nome="Página Login" />
         </div>
     );
 };
 
-export default EventoPage;
+export default Login;

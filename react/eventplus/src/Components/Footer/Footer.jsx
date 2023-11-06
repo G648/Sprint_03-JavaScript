@@ -1,10 +1,12 @@
 import React from 'react';
-
+import "./Footer.css"
 const Footer = () => {
     return (
-        <div className='footer'>
-            <p className='footer-rights'> All Rights Reserved to &copy;Copyright </p>
-        </div>
+        <footer className='footer'>
+
+            <p className='footer__rights'>Todos os direitos reservado</p>
+        </footer>
+        
     );
 };
 
