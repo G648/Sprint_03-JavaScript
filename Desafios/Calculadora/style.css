@@ -1,0 +1,30 @@
+#num1::-webkit-inner-spin-button,#num1::-webkit-outer-spin-button
+#num2::-webkit-inner-spin-button,#num2::-webkit-outer-spin-button
+{
+    /* -webkit-appearance: none; */
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.flex-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+fieldset{
+    width: 40vw;
+    height: 40vh;
+    border-radius: 8px;
+    border: 1px solid black;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 40%, rgba(0,212,255,1) 100%);
+    color: white;
+}
+
+.info-flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
