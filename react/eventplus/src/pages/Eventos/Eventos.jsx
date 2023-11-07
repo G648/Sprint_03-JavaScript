@@ -5,7 +5,7 @@ const Eventos = () => {
     return (
         <div>
       
-           <Titulo nome="Página de Eventos"/>
+           <Titulo titleText={"Página de Eventos"} color=' #B51D44'/>
         </div>
     );
 };

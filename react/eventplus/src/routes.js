@@ -8,7 +8,6 @@ import Eventos from './pages/Eventos/Eventos';
 import TiposEvento from './pages/TiposEvento/TiposEvento';
 import Teste from './pages/Teste/Teste';
 import Header from './Components/Header/Header';
-// import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 const Rotas = () => (
     <div>
