@@ -21,9 +21,10 @@ const Nav = ({ exibeNavbar, setExibeNavbar}) => {
             <div className='navbar__items-box'>
                 <Link to="/" className='navbar__item'>Home</Link>
                 <Link to="/tipos-evento" className='navbar__item'>Tipos de Evento</Link>
-                <Link to="/teste" className='navbar__item'>Usuários</Link>
+                <Link to="/teste" className='navbar__item'>Teste</Link>
                 <Link to="/eventos" className='navbar__item'>Eventos</Link>
                 <Link to="/login" className='navbar__item'>Login</Link>
+
             </div>
         </nav>
     );
