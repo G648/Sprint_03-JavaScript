@@ -9,17 +9,18 @@ import ContactSection from '../../Components/ContactSection/ContactSection';
 import NextEvent from '../../Components/NextEvent/NextEvent';
 import Container from '../../Components/Container/Container'
 import axios from 'axios';
+import api from '../../Services/Service';
+import {nextEventsResource} from '../../Services/Service'
 
 const Home = () => {
 
     const [nextEvents, setNexEvents] = useState([])
-    const urlGet = "https://localhost:7118/api"
 
     //roda somente na inicialização do componente
     useEffect(() => {
         async function getNextEvents() {
             try {
-                const promise = axios.get(`${urlGet}/Evento/ListarProximos`);
+                const promise = api.get();
                 const dados = (await promise).data;
 
                 setNexEvents(dados); //atualiza o state
