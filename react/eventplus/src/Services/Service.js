@@ -3,12 +3,13 @@ import axios from "axios";
 
 //Criar constantes para todas as nossas rotas
 
-export const nextEventsResource = '/Evento/ListarProximos'
+export const getNextEventsResource = '/Evento/ListarProximos'
+// export const postNextEventsResource = '/Evento'
 
 
 const apiPort = '7118'
 const localApiUrl = `https://localhost:${apiPort}/api`
-const externalApiUrl = null;
+// const externalApiUrl = null;
 
 const api = axios.create({
     baseURL: localApiUrl

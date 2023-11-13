@@ -8,9 +8,10 @@ import VisionSection from '../../Components/VisionSection/VisionSection';
 import ContactSection from '../../Components/ContactSection/ContactSection';
 import NextEvent from '../../Components/NextEvent/NextEvent';
 import Container from '../../Components/Container/Container'
-import axios from 'axios';
+// import axios from 'axios';
 import api from '../../Services/Service';
-import {nextEventsResource} from '../../Services/Service'
+import {getNextEventsResource} from '../../Services/Service'
+
 
 const Home = () => {
 
@@ -20,7 +21,7 @@ const Home = () => {
     useEffect(() => {
         async function getNextEvents() {
             try {
-                const promise = api.get();
+                const promise = api.get(getNextEventsResource);
                 const dados = (await promise).data;
 
                 setNexEvents(dados); //atualiza o state

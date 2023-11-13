@@ -29,6 +29,8 @@ const NextEvent = ({ title, description, eventDate, idEvent, }) => {
 
             <p className='event-card__description '>{dateFormatDbToView(eventDate)}</p>
 
+
+
             <a onClick={() => { conectar(idEvent) }} className="event-card__connect-link">conectar</a>
 
         </article>

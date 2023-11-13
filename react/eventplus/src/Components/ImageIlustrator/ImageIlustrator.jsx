@@ -1,31 +1,33 @@
 import React from 'react';
 import './ImageIlustrator.css'
 // import imageResource from '../../assets/images/'
-import typeEventImage from '../../assets/icons/tipo-evento.svg'
-import eventoImage from '../../assets/icons/evento.svg'
 
-const ImageIlustrator = ({ altText, imageName, additionalClass }) => {
-    
-    let imageResource;
+// import eventoImage from '../../assets/icons/evento.svg'
+import defaultImage from '../../assets/images/default-image.jpeg'
 
-    switch (imageName) {
-        case 'tipo-evento':
-            imageResource = typeEventImage
-            break;
-        case 'evento':
-            imageResource = eventoImage
-        break;
-        default:
-            break;
-    }
-    
+const ImageIlustrator = ({ altText, imageName, additionalClass, imageRender = defaultImage}) => {
+
+    // let imageResource;
+
+    // switch (imageName) {
+    //     case 'tipo-evento':
+    //         imageResource = 'typeEventImage'
+    //         break;
+    //     case 'evento':
+    //         imageResource = 'eventoImage'
+    //         break;
+    //     default:
+    //         imageResource = 'defaultImage'
+    //         break;
+    // }
+
     return (
         <figure className='illustrator-box'>
             <img
-                src={imageResource} 
-                alt={altText} 
+                src={imageRender}  
+                alt={altText}
                 className={`illustrator-box__image ${additionalClass}`}
-                />
+            />
         </figure>
     );
 };
