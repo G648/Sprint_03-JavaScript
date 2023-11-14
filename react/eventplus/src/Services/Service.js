@@ -4,7 +4,9 @@ import axios from "axios";
 //Criar constantes para todas as nossas rotas
 
 export const getNextEventsResource = '/Evento/ListarProximos'
-// export const postNextEventsResource = '/Evento'
+export const postNextEventsResource = '/Evento'
+export const postTitleEventsResources = '/TiposEvento'
+export const getTitleEventsResources = '/TiposEvento'
 
 
 const apiPort = '7118'
