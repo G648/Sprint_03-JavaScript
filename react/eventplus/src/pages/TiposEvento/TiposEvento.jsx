@@ -10,7 +10,7 @@ import ImageIlustrator from '../../Components/ImageIlustrator/ImageIlustrator';
 import { Button, Input } from '../../Components/FormComponents/FormComponents';
 import TableTp from './TableTp/TableTp';
 
-import api, { getTitleEventsResources, postTitleEventsResources  } from '../../Services/Service';
+import api, { getTitleEventsResources, postTitleEventsResources } from '../../Services/Service';
 
 
 const TiposEvento = () => {
@@ -36,7 +36,7 @@ const TiposEvento = () => {
     }
 
     loadEventsType();
-  }, [])
+  }, [tiposEvento])
 
   //definindo a função async para nos conectarmos na API
   async function handleSubmit(e) {
@@ -61,13 +61,35 @@ const TiposEvento = () => {
     }
   }
 
+  // ************************EDITAR O CADASTRO DOS TIPOS EVENTOS********************************
   function handleUpdate() {
     alert('bora editar')
   }
 
   //apaga o tipo de evento na api 
-  function handleDelete(idElement) {
-    alert(`vamos apagar o evento de id ${idElement}`)
+  async function handleDelete(idtipoevento) {
+    alert(`vamos apagar o evento de id ${idtipoevento}`)
+
+    //função nativa do js = confirm
+    if (!window.confirm("Voce realmente deseja cancelar este evento?")) {
+      return;
+    }
+
+    try {
+
+      const retorno = await api.delete(`${getTitleEventsResources}/${idtipoevento}`);  
+      
+      if (retorno.status == 204) {
+
+        alert("Apagado com sucesso!")
+
+      }
+
+    } catch (error) {
+
+      alert("não conseguiu deletar")
+
+    }
   }
 
   //cancela a tela/ação de edição (volta para o form de cadastro)
@@ -78,6 +100,7 @@ const TiposEvento = () => {
   // mostra o formulário de edição
   function showUpdateForm() {
     alert(`vamos mostrar o formulário de edição`)
+
   }
 
   return (
