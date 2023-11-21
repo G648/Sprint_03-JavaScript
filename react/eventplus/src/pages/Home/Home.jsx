@@ -10,12 +10,14 @@ import NextEvent from '../../Components/NextEvent/NextEvent';
 import Container from '../../Components/Container/Container'
 // import axios from 'axios';
 import api from '../../Services/Service';
-import {getNextEventsResource} from '../../Services/Service'
+import { getNextEventsResource } from '../../Services/Service'
+import Notification from '../../Components/Notification/Notification';
 
 
 const Home = () => {
 
     const [nextEvents, setNexEvents] = useState([])
+    const [notifyUser, setNotifyUser] = useState();
 
     //roda somente na inicialização do componente
     useEffect(() => {
@@ -26,7 +28,14 @@ const Home = () => {
 
                 setNexEvents(dados); //atualiza o state
             } catch (error) {
-                alert("deu erro na API!")
+                setNotifyUser({
+                    titleNote: "API - Error",
+                    textNote: `Erro na conexão com o servidor`,
+                    imgIcon: "danger",
+                    imgAlt:
+                        "imagem de ilustração de erro.",
+                    showMessage: true
+                });
             }
 
         }
@@ -39,6 +48,8 @@ const Home = () => {
 
             <section className='proximos-eventos'>
                 <Container>
+
+                    {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
 
                     <Titulo titleText={"Próximos eventos"} />
 

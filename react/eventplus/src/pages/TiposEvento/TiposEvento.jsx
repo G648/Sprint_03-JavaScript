@@ -7,6 +7,7 @@ import Main from '../../Components/Main/Main';
 import Container from '../../Components/Container/Container';
 import typeEventImage from '../../assets/icons/tipo-evento.svg'
 import ImageIlustrator from '../../Components/ImageIlustrator/ImageIlustrator';
+import Spinner from '../../Components/Spinner/Spinner'
 import { Button, Input } from '../../Components/FormComponents/FormComponents';
 import TableTp from './TableTp/TableTp';
 import Notification from '../../Components/Notification/Notification';
@@ -17,14 +18,17 @@ import api, { getTitleEventsResources, postTitleEventsResources } from '../../Se
 const TiposEvento = () => {
 
   //states
-  const [frmEdit, setFrmEdit] = useState(false)
+  const [frmEdit, setFrmEdit] = useState(false) //está em modo edição?
   const [titulo, setTitulo] = useState("")
-  const [tiposEvento, setTiposEventos] = useState([])
-  const [notifyUser, setNotifyUser] = useState();
+  const [idEvento, setIdEvento] = useState(null)
+  const [tiposEvento, setTiposEventos] = useState([]) //array
+  const [notifyUser, setNotifyUser] = useState(); //componente notification
+  const [showSpinner, setShowSpinner] = useState(false) //spinner loanding
 
   //usado para chamar a API
   useEffect(() => {
     async function loadEventsType() {
+      setShowSpinner(true);
       try {
 
         const retorno = await api.get(getTitleEventsResources);
@@ -32,9 +36,18 @@ const TiposEvento = () => {
         console.log(retorno.data);
 
       } catch (error) {
-        console.log("Deu ruim na API");
+        setNotifyUser({
+          titleNote: "API - Error",
+          textNote: `Erro na conexão com o backend`,
+          imgIcon: "danger",
+          imgAlt:
+            "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+          showMessage: true
+        });
+
         console.log(error);
       }
+      setShowSpinner(false);
     }
 
     loadEventsType();
@@ -45,7 +58,7 @@ const TiposEvento = () => {
     setNotifyUser({
       titleNote: "Sucesso",
       textNote: `evento cadastrado com sucesso`,
-      imgIcon: "sucsess",
+      imgIcon: "success",
       imgAlt:
         "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
       showMessage: true
@@ -57,7 +70,16 @@ const TiposEvento = () => {
     e.preventDefault();
     if (titulo.trim().length < 3) {
 
-      alert('O titulo deve conter pelo menos 3 caracteres')
+      setNotifyUser({
+        titleNote: "aviso",
+        textNote: `o titulo deve ter pelo menos 3 caracteres`,
+        imgIcon: "warning",
+        imgAlt:
+          "imagem de ilustração de warning. Rapaz segurando um x",
+        showMessage: true
+      });
+
+      return;
     }
 
 
@@ -65,13 +87,33 @@ const TiposEvento = () => {
       const retorno = await api.post(postTitleEventsResources, {
         //propriedade do objeto
         titulo: titulo
+
       });
-      alert("cadastrado com sucesso!")
+
+      setNotifyUser({
+        titleNote: "Sucesso",
+        textNote: `evento cadastrado com sucesso`,
+        imgIcon: "success",
+        imgAlt:
+          "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+        showMessage: true
+      });
 
       setTitulo('')
 
+      //atualiza a tela depois de cadastrar um novo tipo de evento
+      const buscaEvento = await api.get(getTitleEventsResources);
+      setTiposEventos(buscaEvento.data);
+
     } catch (error) {
-      alert("deu ruim na API")
+      setNotifyUser({
+        titleNote: "Error",
+        textNote: `Erro ao cadastrar um evento - verifique a internet`,
+        imgIcon: "warning",
+        imgAlt:
+          "imagem de ilustração de warning. Rapaz segurando um x",
+        showMessage: true
+      });
     }
   }
 
@@ -80,8 +122,54 @@ const TiposEvento = () => {
     e.preventDefault();
     // alert(`vamos editar o evento de id ${idtipoevento}`)
 
-    
+    setShowSpinner(true)
+    try {
+
+      //demos que atualizar na API
+      const retorno = await api.put(getTitleEventsResources + "/" + idEvento, { //put é similar ao post
+        titulo: titulo
+      }) //passar o id que está no state
+
+
+      if (retorno.status == 204) {
+
+        //notificar o usuário
+        setNotifyUser({
+          titleNote: "Sucesso",
+          textNote: `evento atualizado com sucesso`,
+          imgIcon: "success",
+          imgAlt:
+            "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+          showMessage: true
+        });
+
+      }
+
+      // atualizar os dados na tela
+      const buscaEvento = await api.get(getTitleEventsResources);
+      setTiposEventos(buscaEvento.data);
+
+      editActionAbort();
+
+    } catch (error) {
+      console.log(error);
+
+      //notificar o erro ao usuário
+      setNotifyUser({
+        titleNote: "Error",
+        textNote: `Erro ao atualizar um evento - verifique a internet`,
+        imgIcon: "warning",
+        imgAlt:
+          "imagem de ilustração de warning. Rapaz segurando um x",
+        showMessage: true
+      });
+
+    }
+
+    setShowSpinner(false)
+
   }
+
 
   //apaga o tipo de evento na api 
   async function handleDelete(idtipoevento) {
@@ -91,6 +179,8 @@ const TiposEvento = () => {
     if (!window.confirm("Voce realmente deseja cancelar este evento?")) {
       return;
     }
+
+    setShowSpinner(true)
 
     try {
 
@@ -121,22 +211,34 @@ const TiposEvento = () => {
       alert("não conseguiu deletar")
 
     }
+
+    setShowSpinner(false)
   }
+
 
   //cancela a tela/ação de edição (volta para o form de cadastro)
   function editActionAbort() {
 
     setFrmEdit(false)
 
+    setIdEvento(null);
+
+    setTitulo("");
+
   }
+
 
   // mostra o formulário de edição
   async function showUpdateForm(idtipoevento) {
 
+    setIdEvento(idtipoevento); //preenche o id do evento para poder atualizar
+
     setFrmEdit(true)
 
+    setShowSpinner(true)
+
     try {
-      const retorno = await api.put(`${getTitleEventsResources}/${idtipoevento}`)
+      const retorno = await api.get(`${getTitleEventsResources}/${idtipoevento}`)
 
       setTitulo(retorno.data.titulo)
 
@@ -152,11 +254,16 @@ const TiposEvento = () => {
       console.log(error);
     }
 
+    setShowSpinner(false)
+
   }
 
   return (
     <>
       {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
+
+      {/* Spinner - feito com position */}
+      {showSpinner ? <Spinner /> : null}
 
       <Main>
         <section className='cadastro-evento-section'>
@@ -197,15 +304,7 @@ const TiposEvento = () => {
                         textButton="Cadastrar"
                         name="cadastrar"
                         type="submit"
-                        manipulationFunction={notificationMessage}
                       />
-                      {/* <Button
-                        id="mágica"
-                        textButton="mágica"
-                        name="magica"
-                        type="button"
-                        manipulationFunction={theMagic}
-                      /> */}
                     </>
                   )
                     : (
@@ -222,6 +321,7 @@ const TiposEvento = () => {
                             setTitulo(e.target.value)
                           }}
                         />
+                        <span>{idEvento}</span>
                         <div className='buttons-editbox '>
 
                           <Button
