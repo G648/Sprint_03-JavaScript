@@ -41,7 +41,7 @@ const TiposEvento = () => {
           textNote: `Erro na conexão com o backend`,
           imgIcon: "danger",
           imgAlt:
-            "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+            "imagem de ilustração de erro. Moça segurando um balão com símbolo de confirmação OK",
           showMessage: true
         });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './TableTp.css'
+import './TableE.css'
 
 import editPen from '../../../assets/icons/edit-pen.svg'
 import trashDelete from '../../../assets/icons/trash-delete.svg'
@@ -16,7 +16,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                     <th className="table-data__head-title table-data__head-title--big">TipoEvento</th>
                     <th className="table-data__head-title table-data__head-title--Big">Data</th>
                     <th className="table-data__head-title table-data__head-title--little">Editar</th>
-                    <th className="table-data__head-title table-data__head-title--little">Deletarr</th>
+                    <th className="table-data__head-title table-data__head-title--little">Deletar</th>
                 </tr>
             </thead>
 
@@ -26,9 +26,18 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
 
                 {dados.map((tp) => {
                     return (
-                        <tr className="table-data__head-row" key={tp.idTipoEvento}> //passar aqui o id de evento
+                        <tr className="table-data__head-row" key={tp.idEvento}> 
                             <td className="table-data__data table-data__data--big">
-                                {tp.titulo}
+                                {tp.nomeEvento}
+                            </td>
+                            <td className="table-data__data table-data__data--big">
+                                {tp.descricao}
+                            </td>
+                            <td className="table-data__data table-data__data--big">
+                                {tp.tiposEvento.titulo}
+                            </td>
+                            <td className="table-data__data table-data__data--big">
+                                {tp.dataEvento}
                             </td>
 
                             <td className="table-data__data table-data__data--little">
@@ -37,7 +46,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                                     src={editPen}
                                     alt=""
                                     onClick={() => {
-                                        fnUpdate(tp.idTipoEvento) //alterar para idEvento
+                                        fnUpdate(tp.idEvento) //alterar para idEvento
                                     }}
                                 />
                             </td>
@@ -45,13 +54,13 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                             <td
                                 className="table-data__data table-data__data--little">
                                 <img
-                                    idtipoevento={tp.idTipoEvento} //mudar para idEvento
+                                    idtipoevento={tp.idEvento} //mudar para idEvento
                                     className="table-data__icon"
                                     src={trashDelete}
                                     alt=""
                                     onClick={(e) => {
                                         //capiturando o evento de clicar no botão. O get attribute vai pegar a imagem e vai executar uma ação
-                                        fnDelete(e.target.getAttribute('idtipoevento'))
+                                        fnDelete(e.target.getAttribute('idEvento'))
                                     }}
                                 />
                             </td>

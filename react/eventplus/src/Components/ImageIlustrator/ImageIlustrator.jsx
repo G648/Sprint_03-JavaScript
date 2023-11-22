@@ -1,6 +1,6 @@
 import React from 'react';
 import './ImageIlustrator.css'
-import imageResource from '../../assets/images/'
+import imageResource from '../../assets/icons/tipo-evento.svg'
 
 import eventoImage from '../../assets/icons/evento.svg'
 import defaultImage from '../../assets/images/default-image.jpeg'
