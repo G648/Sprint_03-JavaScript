@@ -1,15 +1,15 @@
 /* Smartphone */
 @font-face {
     font-family: Poppins-Thin;
-    src: url(../../../assets/fonts/Poppins/Poppins-Thin.ttf);
+    src: url(../../../Assets/Fonts/Poppins/Poppins-Thin.ttf);
 }
 @font-face {
     font-family: Poppins-Semibold;
-    src: url(../../../assets/fonts/Poppins/Poppins-SemiBold.ttf);
+    src: url(../../../Assets/Fonts/Poppins/Poppins-SemiBold.ttf);
 }
 @font-face {
     font-family: Poppins-Regular;
-    src: url(../../../assets/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(../../../Assets/Fonts/Poppins/Poppins-Regular.ttf);
 }
 
 /* Smartphone */
@@ -28,7 +28,7 @@
 .table-data__head-row {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     margin-bottom: 30px;
     border-bottom: 1px solid var(--color-white);
@@ -54,7 +54,7 @@
 
 .table-data__head-title--big,
 .table-data__data--big {
-    width: 60%;
+    width: 50%;
 }
 
 .table-data__head-title--little,

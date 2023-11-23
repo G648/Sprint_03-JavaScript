@@ -1,8 +1,8 @@
 import React from 'react';
 import './TableTp.css'
 
-import editPen from '../../../assets/icons/edit-pen.svg'
-import trashDelete from '../../../assets/icons/trash-delete.svg'
+import editPen from '../../../Assets/icons/edit-pen.svg'
+import trashDelete from '../../../Assets/icons/trash-delete.svg'
 
 const TableTp = ({ dados, fnDelete = null, fnUpdate = null }) => {
     return (

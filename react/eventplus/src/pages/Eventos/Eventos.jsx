@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Titulo from "../../Components/Titulo/Titulo"
 import Container from '../../Components/Container/Container';
 import ImageIlustrator from '../../Components/ImageIlustrator/ImageIlustrator';
-import eventoImage from '../../assets/icons/evento.svg'
+import eventoImage from '../../Assets/icons/evento.svg'
 import Main from '../../Components/Main/Main';
 import Notification from '../../Components/Notification/Notification';
 
 import FormComponents, { Button, Input, Select } from '../../Components/FormComponents/FormComponents'
 import TableE from '../Eventos/TableE/TableE';
-import api, { postNextEventsResource } from '../../Services/Service';
+import api, { postNextEventsResource, postTitleEventsResources } from '../../Services/Service';
+
 
 const Eventos = () => {
 
@@ -17,8 +18,15 @@ const Eventos = () => {
     const [evento, setEvento] = useState([]); //array de eventos
     const [notifyUser, setNotifyUser] = useState();
     const [titulo, setTitulo] = useState("");
-    const [descricao, setDescricao] = useState("")
-    const [dataEvento, setDataEvento] = useState("")
+    const [tipoEventos, setTipoEventos] = useState([]) //-> lista de array vinda da api
+    const [submitData, setSubmitData] = useState({
+        titulo : "",
+        descricao : "",
+        idTipoEvento : "",
+        dataEvento : "",
+        idInstituicao : "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+
+    })
 
     //chamar os dados da API para serem exibidos na tela
 
@@ -46,6 +54,18 @@ const Eventos = () => {
         loadEvents();
     }, [])
 
+    useEffect(() => {
+        async function loadEventsType() {
+            try {
+                const retorno = await api.get(postTitleEventsResources)
+                setTipoEventos(retorno.data)
+            } catch (error) {
+                
+            }
+        }
+        loadEventsType();
+    },[])
+
     function notificationMessage() {
         setNotifyUser({
             titleNote: "Sucesso",
@@ -61,7 +81,7 @@ const Eventos = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (titulo.trim().length < 3) {
+        if (submitData.titulo.trim().length < 3) {
             setNotifyUser({
                 titleNote: "Aviso",
                 textNote: `o titulo deve conter pelo menos 3 caracteres`,
@@ -74,20 +94,20 @@ const Eventos = () => {
         }
 
         try {
-            const retorno = await api.post(postNextEventsResource, {
-                titulo: titulo
-            });
+            await api.post(postNextEventsResource, submitData);
+
+            console.log(submitData);
 
             setNotifyUser({
                 titleNote: "Sucesso",
                 textNote: `Evento cadastrado com sucesso!`,
                 imgIcon: "success",
                 imgAlt:
-                    "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+                "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
                 showMessage: true
             });
-
-            setTitulo('');
+            
+            setSubmitData({})
 
             //atualiza a tela depois de cadastrar um novo tipo de evento
             const buscaEvento = await api.get(postNextEventsResource);
@@ -102,6 +122,7 @@ const Eventos = () => {
                     "imagem de ilustração de warning. Rapaz segurando um X",
                 showMessage: true
             });
+            console.log(submitData);
         }
     }
 
@@ -139,6 +160,7 @@ const Eventos = () => {
                     showMessage: true
                 });
             }
+           
         } catch (error) {
             setNotifyUser({
                 titleNote: "Api- Error",
@@ -170,6 +192,8 @@ const Eventos = () => {
 
     return (
         <div>
+            {<Notification {...notifyUser} setNotifyUser={setNotifyUser} />}
+
             <Main>
                 <section className='cadastro-evento-section'>
 
@@ -201,9 +225,12 @@ const Eventos = () => {
                                                 name={"Nome"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={titulo}
+                                                value={submitData.titulo}
                                                 manipulationFunction={(e) => {
-                                                    setTitulo(e.target.value)
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        titulo: e.target.value
+                                                    })
                                                 }}
                                             />
 
@@ -213,25 +240,38 @@ const Eventos = () => {
                                                 name={"Descricao"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={descricao}
+                                                value={submitData.descricao}
                                                 manipulationFunction={(e) => {
-                                                    setDescricao(e.target.value)
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        descricao: e.target.value
+                                                    })
                                                 }}
                                             />
-
-                                            {/* <Select
-                                            id={"TipoEvento"}
-                                            name={"TipoEvento"}
-                                            options={""}
-                                            /> */}
+                                            <Select
+                                                id="tipo-evento"
+                                                // placeholder="tipo de evento"
+                                                name="tipo-evento"
+                                                required={"required"}
+                                                options={tipoEventos} //lista de array vinda da api
+                                                manipulationFunction={(e) => {
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        idTipoEvento: e.target.value
+                                                    })
+                                                }}
+                                            />
 
                                             <Input
                                                 id={"DataEvento"}
                                                 type={"date"}
                                                 required={"required"}
-                                                value={dataEvento}
+                                                value={submitData.dataEvento}
                                                 manipulationFunction={(e) => {
-                                                    setDataEvento(e.target.value)
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        dataEvento: e.target.value
+                                                    })
                                                 }}
                                             />
 
@@ -253,8 +293,13 @@ const Eventos = () => {
                                                 name={"Nome"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={"Nome"}
-                                            // manipulationFunction={""}
+                                                value={submitData.titulo}
+                                                manipulationFunction={(e) => {
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        titulo: e.target.value
+                                                    })
+                                                }}
                                             />
 
                                             <Input
@@ -263,7 +308,13 @@ const Eventos = () => {
                                                 name={"Descricao"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={"Descrição"}
+                                                value={submitData.descricao}
+                                                manipulationFunction={(e) => {
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        descricao: e.target.value
+                                                    })
+                                                }}
                                             />
 
                                             {/* <Select
@@ -276,7 +327,13 @@ const Eventos = () => {
                                                 id={"DataEvento"}
                                                 type={"date"}
                                                 required={"required"}
-                                                value={"DataEvento"}
+                                                value={submitData.dataEvento}
+                                                manipulationFunction={(e) => {
+                                                    setSubmitData({
+                                                        ...submitData, 
+                                                        dataEvento: e.target.value
+                                                    })
+                                                }}
                                             />
 
                                             <Button
@@ -291,6 +348,7 @@ const Eventos = () => {
                                                 textButton={"Cancelar"}
                                                 name={"cancelar"}
                                                 type={"button"}
+                                                manipulationFunction={editActionAbort}
                                             />
                                         </>
 
@@ -310,6 +368,8 @@ const Eventos = () => {
 
                         <TableE
                             dados={evento}
+                            dadostop={tipoEventos}
+
                             fnUpdate={showUpdateForm}
                             fnDelete={handleDelete}
 

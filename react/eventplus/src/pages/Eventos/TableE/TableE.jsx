@@ -1,8 +1,8 @@
 import React from 'react';
 import './TableE.css'
 
-import editPen from '../../../assets/icons/edit-pen.svg'
-import trashDelete from '../../../assets/icons/trash-delete.svg'
+import editPen from '../../../Assets/icons/edit-pen.svg'
+import trashDelete from '../../../Assets/icons/trash-delete.svg'
 
 const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
     return (
@@ -15,7 +15,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                     <th className="table-data__head-title table-data__head-title--big">Descricao</th>
                     <th className="table-data__head-title table-data__head-title--big">TipoEvento</th>
                     <th className="table-data__head-title table-data__head-title--Big">Data</th>
-                    <th className="table-data__head-title table-data__head-title--little">Editar</th>
+                    <th className="table-data__head-title table-data__head-title--big">Editar</th>
                     <th className="table-data__head-title table-data__head-title--little">Deletar</th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                                 {tp.dataEvento}
                             </td>
 
-                            <td className="table-data__data table-data__data--little">
+                            <td className="table-data__data table-data__data--big">
                                 <img
                                     className="table-data__icon"
                                     src={editPen}
@@ -60,7 +60,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                                     alt=""
                                     onClick={(e) => {
                                         //capiturando o evento de clicar no botão. O get attribute vai pegar a imagem e vai executar uma ação
-                                        fnDelete(e.target.getAttribute('idEvento'))
+                                        fnDelete(tp.idEvento)
                                     }}
                                 />
                             </td>

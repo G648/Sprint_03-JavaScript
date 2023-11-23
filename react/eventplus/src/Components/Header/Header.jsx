@@ -3,7 +3,7 @@ import "./Header.css";
 import Container from "../Container/Container";
 import Nav from '../Nav/Nav';
 import PerfilUsuario from '../PerfilUsuario/PerfilUsuario';
-import menubar from "../../assets/images/menubar.png";
+import menubar from "../../Assets/images/menubar.png";
 
 const Header = () => {
 

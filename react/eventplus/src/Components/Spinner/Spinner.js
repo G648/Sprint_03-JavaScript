@@ -1,5 +1,5 @@
 import React from 'react';
-import spinner from '../../assets/icons/spinner-loading.svg';
+import spinner from '../../Assets/icons/spinner-loading.svg';
 import './Spinner.css';
 
 function Spinner({ alt = '', width = '35x', height = '35px' }) {

@@ -11866,19 +11866,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\45845444845\\.nuget\\packages\\": {}
+    "C:\\Users\\cezar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\45845444845\\Desktop\\2023-1S-2D\\sprint-2-api\\Event+\\webapi.event+\\webapi.event+.csproj",
+      "projectUniqueName": "C:\\Users\\cezar\\OneDrive\\Área de Trabalho\\Sprint_03-JavaScript\\webapi.event+\\webapi.event+.csproj",
       "projectName": "webapi.event+",
-      "projectPath": "C:\\Users\\45845444845\\Desktop\\2023-1S-2D\\sprint-2-api\\Event+\\webapi.event+\\webapi.event+.csproj",
-      "packagesPath": "C:\\Users\\45845444845\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\45845444845\\Desktop\\2023-1S-2D\\sprint-2-api\\Event+\\webapi.event+\\obj\\",
+      "projectPath": "C:\\Users\\cezar\\OneDrive\\Área de Trabalho\\Sprint_03-JavaScript\\webapi.event+\\webapi.event+.csproj",
+      "packagesPath": "C:\\Users\\cezar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cezar\\OneDrive\\Área de Trabalho\\Sprint_03-JavaScript\\webapi.event+\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\45845444845\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cezar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11968,7 +11968,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

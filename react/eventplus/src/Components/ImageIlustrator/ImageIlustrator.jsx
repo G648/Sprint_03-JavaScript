@@ -1,9 +1,9 @@
 import React from 'react';
 import './ImageIlustrator.css'
-import imageResource from '../../assets/icons/tipo-evento.svg'
+import imageResource from '../../Assets/icons/tipo-evento.svg'
 
-import eventoImage from '../../assets/icons/evento.svg'
-import defaultImage from '../../assets/images/default-image.jpeg'
+import eventoImage from '../../Assets/icons/evento.svg'
+import defaultImage from '../../Assets/images/default-image.jpeg'
 
 const ImageIlustrator = ({ altText, imageName, additionalClass, imageRender = defaultImage}) => {
 

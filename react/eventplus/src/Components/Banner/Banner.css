@@ -4,7 +4,7 @@
     height: 530px;
     margin-bottom: 25px;
     background-color: var(--color-red);
-    background-image: url(../../assets/images//banner-mobile.png);
+    background-image: url(../../Assets/images//banner-mobile.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,7 +13,7 @@
   @media screen and (min-width: 992px) {
     .banner {
       height: 750px;
-      background-image: url(../../assets/images//banner-desktop.png);
+      background-image: url(../../Assets/images//banner-desktop.png);
     }
   }
   

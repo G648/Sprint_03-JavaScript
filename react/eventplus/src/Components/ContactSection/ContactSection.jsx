@@ -1,7 +1,7 @@
 import React from 'react';
 import './ContactSection.css'
 import Titulo from '../Titulo/Titulo';
-import contatoMap from '../../assets/images/contato-map.png'
+import contatoMap from '../../Assets/images/contato-map.png'
 
 const ContactSection = () => {
     return (

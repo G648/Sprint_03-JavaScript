@@ -1,12 +1,12 @@
 
 @font-face {
     font-family: Poppins-Regular;
-    src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(../../Assets/Fonts/Poppins/Poppins-Regular.ttf);
 }
 
 @font-face {
     font-family: Poppins-Medium;
-    src: url(../../assets/fonts/Poppins/Poppins-Medium.ttf);
+    src: url(../../Assets/Fonts/Poppins/Poppins-Medium.ttf);
 }
 
 
@@ -54,7 +54,7 @@
 @media screen and (min-width: 992px) {
     .banner {
       height: 720px;
-      background-image: url(../../assets/images//banner-desktop.png);
+      background-image: url(../../Assets/images//banner-desktop.png);
     }
   
     .events-box {

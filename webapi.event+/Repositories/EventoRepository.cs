@@ -89,7 +89,28 @@ namespace webapi.event_.Repositories
         {
             try
             {
-                return _context.Evento.ToList();
+                return _context.Evento
+                    .Select(e => new Evento
+                    {
+                        IdEvento    = e.IdEvento,
+                        DataEvento  = e.DataEvento,
+                        NomeEvento  = e.NomeEvento,
+                        Descricao   = e.Descricao,
+                        IdTipoEvento= e.IdTipoEvento,
+                        TiposEvento = new TiposEvento
+                        {
+                            IdTipoEvento    = e.IdTipoEvento,
+                            Titulo          = e.TiposEvento.Titulo,
+                        },
+                        IdInstituicao   = e.IdInstituicao,
+                        Instituicao     = new Instituicao
+                        {
+                            IdInstituicao   = e.IdInstituicao,
+                            CNPJ            = e.Instituicao.CNPJ,
+                            Endereco        = e.Instituicao.Endereco,
+                            NomeFantasia    = e.Instituicao.NomeFantasia,
+                        },
+                    }).ToList();
             }
             catch (Exception)
             {

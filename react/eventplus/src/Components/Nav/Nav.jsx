@@ -1,6 +1,6 @@
 import React from 'react';
-import logoMobile from "../../assets/icons/logo-white.svg";
-import logoDesktop from "../../assets/icons/logo-pink.svg";
+import logoMobile from "../../Assets/icons/logo-white.svg";
+import logoDesktop from "../../Assets/icons/logo-pink.svg";
 import { Link } from 'react-router-dom'
 import "./Nav.css"
 

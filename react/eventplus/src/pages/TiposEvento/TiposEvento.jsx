@@ -5,7 +5,7 @@ import './TableTp/TableTp.css'
 import Titulo from '../../Components/Titulo/Titulo';
 import Main from '../../Components/Main/Main';
 import Container from '../../Components/Container/Container';
-import typeEventImage from '../../assets/icons/tipo-evento.svg'
+import typeEventImage from '../../Assets/icons/tipo-evento.svg'
 import ImageIlustrator from '../../Components/ImageIlustrator/ImageIlustrator';
 import Spinner from '../../Components/Spinner/Spinner'
 import { Button, Input } from '../../Components/FormComponents/FormComponents';

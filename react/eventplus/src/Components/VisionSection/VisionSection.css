@@ -1,11 +1,11 @@
 @font-face {
     font-family: Poppins-Regular;
-    src: url(../../assets/fonts/Poppins/Poppins-Regular.ttf);
+    src: url(../../Assets/Fonts/Poppins/Poppins-Regular.ttf);
   }
   
   @font-face {
     font-family: Poppins-Thin;
-    src: url(../../assets/fonts/Poppins/Poppins-Thin.ttf);
+    src: url(../../Assets/Fonts/Poppins/Poppins-Thin.ttf);
   }
   
   .vision {
@@ -18,7 +18,7 @@
   .vision__box {
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/images/vision-background-mobile.png);
+    background-image: url(../../Assets/images/vision-background-mobile.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -43,7 +43,7 @@
     }
   
     .vision__box {
-      background-image: url(../../assets/images/vision-background-desktop.png);
+      background-image: url(../../Assets/images/vision-background-desktop.png);
     }
   
     .vision__text {
