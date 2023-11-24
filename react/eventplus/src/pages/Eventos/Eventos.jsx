@@ -20,13 +20,14 @@ const Eventos = () => {
     const [titulo, setTitulo] = useState("");
     const [tipoEventos, setTipoEventos] = useState([]) //-> lista de array vinda da api
     const [submitData, setSubmitData] = useState({
-        titulo : "",
-        descricao : "",
-        idTipoEvento : "",
-        dataEvento : "",
-        idInstituicao : "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        nomeEvento: "",
+        descricao: "",
+        idTipoEvento: "",
+        dataEvento: "",
+        idInstituicao: "b5c5648e-9288-4092-9568-3d74f2e7f099"
 
     })
+    const [idEvento, setIdEvento] = useState("")
 
     //chamar os dados da API para serem exibidos na tela
 
@@ -60,11 +61,11 @@ const Eventos = () => {
                 const retorno = await api.get(postTitleEventsResources)
                 setTipoEventos(retorno.data)
             } catch (error) {
-                
+                console.log(error);
             }
         }
         loadEventsType();
-    },[])
+    }, [])
 
     function notificationMessage() {
         setNotifyUser({
@@ -81,7 +82,7 @@ const Eventos = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (submitData.titulo.trim().length < 3) {
+        if (submitData.nomeEvento.trim().length < 3) {
             setNotifyUser({
                 titleNote: "Aviso",
                 textNote: `o titulo deve conter pelo menos 3 caracteres`,
@@ -94,6 +95,10 @@ const Eventos = () => {
         }
 
         try {
+            setSubmitData({
+                ...submitData,
+                idInstituicao: "b5c5648e-9288-4092-9568-3d74f2e7f099"
+            })
             await api.post(postNextEventsResource, submitData);
 
             console.log(submitData);
@@ -103,15 +108,15 @@ const Eventos = () => {
                 textNote: `Evento cadastrado com sucesso!`,
                 imgIcon: "success",
                 imgAlt:
-                "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+                    "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
                 showMessage: true
             });
-            
-            setSubmitData({})
+
 
             //atualiza a tela depois de cadastrar um novo tipo de evento
             const buscaEvento = await api.get(postNextEventsResource);
             setEvento(buscaEvento.data);
+
 
         } catch (error) {
             setNotifyUser({
@@ -123,6 +128,8 @@ const Eventos = () => {
                 showMessage: true
             });
             console.log(submitData);
+            console.log(JSON.stringify(submitData));
+            console.log(error);
         }
     }
 
@@ -131,6 +138,38 @@ const Eventos = () => {
     async function handleUpdate(e) {
         e.preventDefault();
 
+        try {
+            const retorno = await api.put(`${postNextEventsResource}/${idEvento}`, submitData)
+
+            if (retorno.status == 204) {
+
+                const buscaEvento = await api.get(postNextEventsResource)
+
+                setEvento(buscaEvento.data)
+
+                setNotifyUser({
+                    titleNote: "Sucesso",
+                    textNote: `evento excluido com sucesso`,
+                    imgIcon: "success",
+                    imgAlt:
+                        "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+                    showMessage: true
+                });
+            }
+            editActionAbort(true)
+
+            setSubmitData({
+                nomeEvento: "",
+                descricao: "",
+                idTipoEvento: "",
+                idInstituicao: "",
+                dataEvento: ""
+
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 
@@ -160,7 +199,7 @@ const Eventos = () => {
                     showMessage: true
                 });
             }
-           
+
         } catch (error) {
             setNotifyUser({
                 titleNote: "Api- Error",
@@ -180,15 +219,30 @@ const Eventos = () => {
     function editActionAbort() {
         setFrmEdit(false)
 
-        //set id = null
+        setSubmitData({})
 
-        //set titulo = ""
     }
 
     // ***************************SHOWUPDATEFORM - MOSTRA FORM DE EDIÇÃO ***********************
-    function showUpdateForm(idEvento) {
+
+    async function showUpdateForm(idEvento) {
         setFrmEdit(true)
+        setIdEvento(idEvento)
+
+        try {
+            const retorno = await api.get(`${postNextEventsResource}/${idEvento}`)
+            setSubmitData({
+                nomeEvento: retorno.data.nomeEvento,
+                descricao: retorno.data.descricao,
+                idTipoEvento: retorno.data.idTipoEvento,
+                dataEvento: new Date(retorno.data.dataEvento).toLocaleDateString("sv-SE")
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+
 
     return (
         <div>
@@ -225,11 +279,11 @@ const Eventos = () => {
                                                 name={"Nome"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={submitData.titulo}
+                                                value={submitData.nomeEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
-                                                        titulo: e.target.value
+                                                        ...submitData,
+                                                        nomeEvento: e.target.value
                                                     })
                                                 }}
                                             />
@@ -243,7 +297,7 @@ const Eventos = () => {
                                                 value={submitData.descricao}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
+                                                        ...submitData,
                                                         descricao: e.target.value
                                                     })
                                                 }}
@@ -254,9 +308,10 @@ const Eventos = () => {
                                                 name="tipo-evento"
                                                 required={"required"}
                                                 options={tipoEventos} //lista de array vinda da api
+                                                defaultValue={submitData.idTipoEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
+                                                        ...submitData,
                                                         idTipoEvento: e.target.value
                                                     })
                                                 }}
@@ -269,7 +324,7 @@ const Eventos = () => {
                                                 value={submitData.dataEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
+                                                        ...submitData,
                                                         dataEvento: e.target.value
                                                     })
                                                 }}
@@ -293,11 +348,11 @@ const Eventos = () => {
                                                 name={"Nome"}
                                                 type={"text"}
                                                 required={"required"}
-                                                value={submitData.titulo}
+                                                value={submitData.nomeEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
-                                                        titulo: e.target.value
+                                                        ...submitData,
+                                                        nomeEvento: e.target.value
                                                     })
                                                 }}
                                             />
@@ -311,17 +366,25 @@ const Eventos = () => {
                                                 value={submitData.descricao}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
+                                                        ...submitData,
                                                         descricao: e.target.value
                                                     })
                                                 }}
                                             />
 
-                                            {/* <Select
-                                            id={"TipoEvento"}
-                                            name={"TipoEvento"}
-                                            options={""}
-                                            /> */}
+                                            <Select
+                                                id="tipo-evento"
+                                                // placeholder="tipo de evento"
+                                                name="tipo-evento"
+                                                required={"required"}
+                                                options={tipoEventos} //lista de array vinda da api
+                                                manipulationFunction={(e) => {
+                                                    setSubmitData({
+                                                        ...submitData,
+                                                        idTipoEvento: e.target.value
+                                                    })
+                                                }}
+                                            />
 
                                             <Input
                                                 id={"DataEvento"}
@@ -330,7 +393,7 @@ const Eventos = () => {
                                                 value={submitData.dataEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
-                                                        ...submitData, 
+                                                        ...submitData,
                                                         dataEvento: e.target.value
                                                     })
                                                 }}
@@ -372,7 +435,6 @@ const Eventos = () => {
 
                             fnUpdate={showUpdateForm}
                             fnDelete={handleDelete}
-
                         />
                     </Container>
                 </section>

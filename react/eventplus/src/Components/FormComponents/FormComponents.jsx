@@ -73,10 +73,10 @@ export const Select = ({
 
             {options.map((opt) => {
                 return (
-                    <option key={opt.idTiposEvento} value={opt.idTiposEvento}>{opt.titulo}</option>
+                    <option key={opt.idTipoEvento} value={opt.idTipoEvento}>{opt.titulo}</option>
                 );
             })}
 
         </select>
     );
-}
+}   

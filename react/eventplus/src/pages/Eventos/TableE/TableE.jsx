@@ -4,6 +4,8 @@ import './TableE.css'
 import editPen from '../../../Assets/icons/edit-pen.svg'
 import trashDelete from '../../../Assets/icons/trash-delete.svg'
 
+import {dateFormatDbToView} from '../../../Utils/stringFunctions'
+
 const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
     return (
         <table className='table-data'>
@@ -37,7 +39,7 @@ const TableE = ({ dados, fnDelete = null, fnUpdate = null }) => {
                                 {tp.tiposEvento.titulo}
                             </td>
                             <td className="table-data__data table-data__data--big">
-                                {tp.dataEvento}
+                                {dateFormatDbToView(tp.dataEvento)}
                             </td>
 
                             <td className="table-data__data table-data__data--big">

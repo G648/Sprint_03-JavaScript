@@ -28,11 +28,11 @@ namespace webapi.event_.Contexts
         /// <param name="optionsBuilder">Objeto com as configurações definidas</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=NOTE16-S15; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
-            //base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer("Server=Amorim\\SQLEXPRESS; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=NOTE16-S15; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
             base.OnConfiguring(optionsBuilder);
+
+            //optionsBuilder.UseSqlServer("Server=Amorim\\SQLEXPRESS; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
+            //base.OnConfiguring(optionsBuilder);
         }
     }
 }
