@@ -12,14 +12,18 @@
     src: url(../../../Assets/Fonts/Poppins/Poppins-Regular.ttf);
 }
 
+.tooltip {
+    color: #fff !important;
+    background-color: black !important;
+  }
+
 /* Smartphone */
 .table-data {
     /* table */
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 466px;
-    /* apagar */
+     height: 466px; /* apagar */
     margin-top: 60px;
     color: var(--color-white);
     /* border: 1px solid white; */
@@ -28,13 +32,14 @@
 .table-data__head-row {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
-
+    justify-content: space-between;
+    
     margin-bottom: 30px;
     border-bottom: 1px solid var(--color-white);
 }
 
-.table-data__head-title,
+
+.table-data__head-title, 
 .table-data__data {
     width: 100%;
     padding: 5px 5px 10px;
@@ -48,16 +53,16 @@
     text-align: left;
 }
 
-.table-data__data {
+.table-data__data{
     margin-bottom: 15px;
 }
 
-.table-data__head-title--big,
+.table-data__head-title--big, 
 .table-data__data--big {
-    width: 50%;
+    width: 60%;
 }
 
-.table-data__head-title--little,
+.table-data__head-title--little, 
 .table-data__data--little {
     width: 20%;
 }
@@ -77,9 +82,5 @@
 }
 
 @media screen and (min-width: 992px) {
-
-    .table-data__head-title,
-    .table-data__head-data {
-        font-size: 1rem;
-    }
+    .table-data__head-title, .table-data__head-data {font-size: 1rem;}
 }

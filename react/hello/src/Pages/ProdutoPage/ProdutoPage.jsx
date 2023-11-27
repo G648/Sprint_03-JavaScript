@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CardEvento from '../../components/CardEventos/CardEvento.';
 import Container from '../../components/container/container';
 import Title from '../../components/Title/Title';
+import { ThemeContext } from '../../context/ThemeContext';
+
 
 const ProdutoPage = () => {
+
+    const {theme} = useContext(ThemeContext)
+
     return (
         <div>
             <Title text="World Skills">  </Title>
+            <span>{theme}</span>
 
             <Container>
 
