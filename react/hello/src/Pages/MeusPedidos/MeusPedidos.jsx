@@ -4,13 +4,27 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 const MeusPedidos = () => {
 
-    const{theme} = useContext(ThemeContext)
+    const{theme, produtos} = useContext(ThemeContext)
 
     return (
         <div>
             {/* <Title text= "Meus Pedidos"></Title> */}
             <h1>Dados importantes</h1>
             <span>{theme}</span>
+
+            {produtos.map( (p) => {
+                return(
+                    <>
+                    <div>
+                        {p.idProduto} |&nbsp;
+                        {p.descricao} |&nbsp;
+                        {p.preco} |&nbsp;
+                        {p.promo ? "sim" : "não"} 
+                    </div>
+                    </>
+                   
+                );
+            })}
         </div>
     );
 };

@@ -7,9 +7,17 @@ const Nav = () => {
     const {theme, setTheme } = useContext(ThemeContext)
 
     const toggleTheme = () => {
-        alert("trocando de tema")
+        // alert("trocando de tema")
 
-        setTheme(theme === 'light' ? 'dark' : 'light')
+        // setTheme(theme === 'light' ? 'dark' : 'light')
+
+        //outra forma de fazer:        
+        const tm = theme === 'light' ? 'dark' : 'light'
+
+        setTheme(tm)
+
+
+        localStorage.setItem("theme", tm) //salvar no navegador
     }
 
     return (
