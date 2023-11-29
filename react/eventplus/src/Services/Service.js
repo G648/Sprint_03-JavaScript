@@ -7,6 +7,7 @@ export const getNextEventsResource = '/Evento/ListarProximos'
 export const postNextEventsResource = '/Evento'
 export const postTitleEventsResources = '/TiposEvento'
 export const getTitleEventsResources = '/TiposEvento'
+export const loginEventsResources = '/Login'
 
 
 const apiPort = '7118'

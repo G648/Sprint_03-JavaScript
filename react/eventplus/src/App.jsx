@@ -1,7 +1,16 @@
+import { useState } from "react";
+import "./App.css";
+import { UserContext } from "./Components/Context/AuthContext";
+import Rotas from "./routes";
 
-import './App.css';
-import Rotas from './routes';
-const App = () => <Rotas />
+function App() {
+  const [userData, setUserData] = useState({});
 
+  return (
+    <UserContext.Provider value={{ userData, setUserData }}>
+      <Rotas />
+    </UserContext.Provider>
+  );
+}
 
 export default App;
