@@ -6,6 +6,7 @@ import loginImg from "../../Assets/icons/login.svg";
 import { loginEventsResources } from "../../Services/Service";
 import api from "../../Services/Service";
 import Notification from "../../Components/Notification/Notification";
+import { useNavigate } from "react-router-dom";
 
 import "./Login.css";
 import { UserContext,userDecodeToken } from "../../Components/Context/AuthContext";
@@ -13,6 +14,7 @@ import { UserContext,userDecodeToken } from "../../Components/Context/AuthContex
 const LoginPage = () => {
   const [notifyUser, setNotifyUser] = useState();
   const {userData, setUserData} = useContext(UserContext); //import global data usar o destructuring ao inves do []
+  const navigate = useNavigate();
 
   function notificationMessage() {
     setNotifyUser({
@@ -29,6 +31,12 @@ const LoginPage = () => {
     email: "guilherme@guilherme.com",
     senha: "",
   });
+
+  useEffect(() =>{
+    if (userData.nome) {
+      navigate("/")
+    }
+  }, [userData])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -48,6 +56,12 @@ const LoginPage = () => {
 
         localStorage.setItem("token", JSON.stringify(userFullToken))
 
+        console.log(userFullToken);
+        console.log(userData);
+
+        //usando o navigate
+        navigate("/") //envia o usuário direto para a página inicial
+
         setNotifyUser({
           titleNote: "Sucesso",
           textNote: `evento cadastrado com sucesso`,
@@ -56,6 +70,8 @@ const LoginPage = () => {
             "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
           showMessage: true,
         });
+
+        
       } catch (error) {
         console.log(error);
 
@@ -69,14 +85,14 @@ const LoginPage = () => {
         });
       }
 
-      setNotifyUser({
-        titleNote: "warning",
-        textNote: `A senha deve conter mais que 3 caracteres`,
-        imgIcon: "warning",
-        imgAlt:
-          "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
-        showMessage: true,
-      });
+      // setNotifyUser({
+      //   titleNote: "warning",
+      //   textNote: `A senha deve conter mais que 3 caracteres`,
+      //   imgIcon: "warning",
+      //   imgAlt:
+      //     "imagem de ilustração de sucesso. Moça segurando um balão com símbolo de confirmação OK",
+      //   showMessage: true,
+      // });
 
       return;
     }
@@ -135,12 +151,11 @@ const LoginPage = () => {
               </a>
 
               <Button
-                buttonText={"Login"}
+                textButton="Login"
                 id="btn-login"
                 name="btn-login"
                 type="submit"
                 additionalClass="frm-login__button"
-                manipulationFunction={() => {}}
               />
             </form>
           </div>
