@@ -28,7 +28,7 @@ const LoginPage = () => {
   }
 
   const [user, setUser] = useState({
-    email: "guilherme@guilherme.com",
+    email: "",
     senha: "",
   });
 

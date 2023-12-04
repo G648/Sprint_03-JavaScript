@@ -8,6 +8,7 @@ export const postNextEventsResource = '/Evento'
 export const postTitleEventsResources = '/TiposEvento'
 export const getTitleEventsResources = '/TiposEvento'
 export const loginEventsResources = '/Login'
+export const getMinhasReservas = '/ListarMinhas'
 
 
 const apiPort = '7118'

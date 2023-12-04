@@ -243,6 +243,20 @@ const Eventos = () => {
     }
 
 
+    function changeType() {
+        const newArray =[]
+
+        tipoEventos.map((tp) => {
+            const obj = {
+                text : tp.titulo,
+                value : tp.idTIpoEvento
+            }
+            
+            newArray.push(obj)
+        })
+        return newArray;
+    }
+
 
     return (
         <div>
@@ -307,7 +321,7 @@ const Eventos = () => {
                                                 // placeholder="tipo de evento"
                                                 name="tipo-evento"
                                                 required={"required"}
-                                                options={tipoEventos} //lista de array vinda da api
+                                                options={changeType()} //lista de array vinda da api
                                                 defaultValue={submitData.idTipoEvento}
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
@@ -377,7 +391,7 @@ const Eventos = () => {
                                                 // placeholder="tipo de evento"
                                                 name="tipo-evento"
                                                 required={"required"}
-                                                options={tipoEventos} //lista de array vinda da api
+                                                options={changeType()} //lista de array vinda da api
                                                 manipulationFunction={(e) => {
                                                     setSubmitData({
                                                         ...submitData,
