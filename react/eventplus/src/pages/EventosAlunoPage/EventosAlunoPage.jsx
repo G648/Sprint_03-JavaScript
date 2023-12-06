@@ -10,7 +10,9 @@ import Modal from "../../Components/Modal/Modal";
 import api, {
   postNextEventsResource,
   postTitleEventsResources,
-  getMinhasReservas
+  getMinhasReservas,
+  myEventsResource,
+  presencaEventoResource,
 } from "../../Services/Service";
 
 import "./EventosAlunoPage.css";
@@ -37,29 +39,70 @@ const EventosAlunoPage = () => {
   //roda no carregamento da página e sempre  que o tipo de evento for alterado
   useEffect(() => {
     async function loadEventsType() {
-      if (tipoEvento == 1) {
-
+      if (tipoEvento === "1") {
         try {
           const retorno = await api.get(postNextEventsResource);
+          const retornoMeusEventos = await api.get(
+            `${myEventsResource}/${userData.idUsuario}`
+          ); //falta passar aqui o ID
           setEventos(retorno.data);
-          console.log(eventos);
+
+          const eventosMarcados = verificaPresenca(
+            retorno.data,
+            retornoMeusEventos.data
+          );
+          setEventos(eventosMarcados);
+
+          console.clear();
+          console.log("todos eventos");
+          console.log(retorno.data);
+
+          console.log("meus eventos");
+          console.log(retornoMeusEventos.data);
+
+          console.log("eventos marcados");
+          console.log(eventosMarcados.data);
         } catch (error) {
           console.log(error);
         }
-
-      }else {
-
+      } else if (tipoEvento === "2") {
         try {
-        const retornoMeusEventos = await api.get(`${getMinhasReservas}/${userData.idUsuario}`) //falta passar aqui o ID
-          setEventos(retornoMeusEventos.data)
+          const retorno = await api.get(
+            `${getMinhasReservas}/${userData.idUsuario}`
+          );
+          console.log(`${getMinhasReservas}/${userData.idUsuario}`);
+          console.log(retorno.data);
+          const arrEventos = [];
+
+          retorno.data.forEach((e) => {
+            arrEventos.push({ ...e.evento, situacao: e.situacao });
+          });
+
+          setEventos(arrEventos);
         } catch (error) {
+          console.log("Erro na API");
           console.log(error);
         }
-        
+      } else {
+        setEventos([]);
       }
     }
+
     loadEventsType();
-  }, [tipoEvento]);
+  }, [tipoEvento, userData.idUsuario]);
+
+  const verificaPresenca = (arrAllEvents, eventsUser) => {
+    for (let x = 0; x < arrAllEvents.length; x++) {
+      for (let i = 0; i < eventsUser.length; i++) {
+        if (arrAllEvents[x].idEvento === eventsUser[i].evento.idEvento) {
+          arrAllEvents[x].situacao = true;
+          arrAllEvents[x].idPresencaEvento = eventsUser[i].idPresencaEvento;
+          break;
+        }
+      }
+    }
+    return arrAllEvents;
+  };
 
   //criar uma função para trazer os eventos do aluno ou todos os eventos
 
@@ -80,8 +123,54 @@ const EventosAlunoPage = () => {
     alert("Remover o comentário");
   };
 
-  function handleConnect() {
-    alert("Desenvolver a função conectar evento");
+  async function handleConnect(
+    idEvento,
+    whatTheFunction,
+    idPresencaEvento = null
+  ) {
+    if (whatTheFunction === "connect") {
+      try {
+        // {
+        //   "situacao": true,
+        //   "idUsuario": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        //   "idEvento": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        // }
+        const promise = await api.post(presencaEventoResource, {
+          situacao: true,
+          idUsuario: userData.idUsuario,
+          idEvento: idEvento,
+        });
+
+        if (promise.status == 201) {
+          alert("obrigado por se cadastrar no evento");
+        }
+
+        const todosEventos = await api.get(postNextEventsResource);
+        setEventos(todosEventos.data);
+      } catch (error) {
+        console.log(error);
+      }
+
+      alert("CONECTAR AO EVENTO:" + idEvento);
+      return;
+    }
+
+    console.log(`
+      EVENTOS
+      ${whatTheFunction}
+      ${idPresencaEvento}
+    `);
+
+    //disconnect
+    try {
+      const unconnect = await api.delete(
+        presencaEventoResource + "/" + idPresencaEvento
+      );
+      if ((unconnect.status = 204)) {
+        const todosEventos = await api.get(postNextEventsResource);
+        setEventos(todosEventos.data);
+      }
+    } catch (error) {}
   }
   return (
     <>
