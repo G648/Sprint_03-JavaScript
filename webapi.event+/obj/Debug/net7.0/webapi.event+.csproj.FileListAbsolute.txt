@@ -1300,3 +1300,6 @@ C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\obj\Debug\net7.0\webapi.eve
 C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\obj\Debug\net7.0\webapi.event+.pdb
 C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\obj\Debug\net7.0\webapi.event+.genruntimeconfig.cache
 C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\obj\Debug\net7.0\ref\webapi.event+.dll
+C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\bin\Debug\net7.0\Microsoft.Azure.CognitiveServices.ContentModerator.dll
+C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\bin\Debug\net7.0\Microsoft.Rest.ClientRuntime.dll
+C:\Users\45845444845\Desktop\Sprint_03\webapi.event+\bin\Debug\net7.0\Microsoft.Rest.ClientRuntime.Azure.dll

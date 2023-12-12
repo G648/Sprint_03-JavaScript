@@ -13,6 +13,7 @@ import api, {
   getMinhasReservas,
   myEventsResource,
   presencaEventoResource,
+  comentariosEvento,
 } from "../../Services/Service";
 
 import "./EventosAlunoPage.css";
@@ -38,58 +39,59 @@ const EventosAlunoPage = () => {
 
   //roda no carregamento da página e sempre  que o tipo de evento for alterado
   useEffect(() => {
-    async function loadEventsType() {
-      if (tipoEvento === "1") {
-        try {
-          const retorno = await api.get(postNextEventsResource);
-          const retornoMeusEventos = await api.get(
-            `${myEventsResource}/${userData.idUsuario}`
-          ); //falta passar aqui o ID
-          setEventos(retorno.data);
-
-          const eventosMarcados = verificaPresenca(
-            retorno.data,
-            retornoMeusEventos.data
-          );
-          setEventos(eventosMarcados);
-
-          console.clear();
-          console.log("todos eventos");
-          console.log(retorno.data);
-
-          console.log("meus eventos");
-          console.log(retornoMeusEventos.data);
-
-          console.log("eventos marcados");
-          console.log(eventosMarcados.data);
-        } catch (error) {
-          console.log(error);
-        }
-      } else if (tipoEvento === "2") {
-        try {
-          const retorno = await api.get(
-            `${getMinhasReservas}/${userData.idUsuario}`
-          );
-          console.log(`${getMinhasReservas}/${userData.idUsuario}`);
-          console.log(retorno.data);
-          const arrEventos = [];
-
-          retorno.data.forEach((e) => {
-            arrEventos.push({ ...e.evento, situacao: e.situacao });
-          });
-
-          setEventos(arrEventos);
-        } catch (error) {
-          console.log("Erro na API");
-          console.log(error);
-        }
-      } else {
-        setEventos([]);
-      }
-    }
-
     loadEventsType();
   }, [tipoEvento, userData.idUsuario]);
+
+
+  async function loadEventsType() {
+    if (tipoEvento === "1") {
+      try {
+        const retorno = await api.get(postNextEventsResource);
+        const retornoMeusEventos = await api.get(
+          `${myEventsResource}/${userData.idUsuario}`
+        ); //falta passar aqui o ID
+        setEventos(retorno.data);
+
+        const eventosMarcados = verificaPresenca(
+          retorno.data,
+          retornoMeusEventos.data
+        );
+        setEventos(eventosMarcados);
+
+        console.clear();
+        console.log("todos eventos");
+        console.log(retorno.data);
+
+        console.log("meus eventos");
+        console.log(retornoMeusEventos.data);
+
+        console.log("eventos marcados");
+        console.log(eventosMarcados.data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else if (tipoEvento === "2") {
+      try {
+        const retorno = await api.get(
+          `${getMinhasReservas}/${userData.idUsuario}`
+        );
+        console.log(`${getMinhasReservas}/${userData.idUsuario}`);
+        console.log(retorno.data);
+        const arrEventos = [];
+
+        retorno.data.forEach((e) => {
+          arrEventos.push({ ...e.evento, situacao: e.situacao, idPresencaEvento: e.idPresencaEvento});
+        });
+
+        setEventos(arrEventos);
+      } catch (error) {
+        console.log("Erro na API");
+        console.log(error);
+      }
+    } else {
+      setEventos([]);
+    }
+  }
 
   const verificaPresenca = (arrAllEvents, eventsUser) => {
     for (let x = 0; x < arrAllEvents.length; x++) {
@@ -111,16 +113,37 @@ const EventosAlunoPage = () => {
     setTipoEvento(tpEvent);
   }
 
+  //ler um comentário - get
   async function loadMyComentary(idComentary) {
     return "????";
   }
 
-  const showHideModal = () => {
-    setShowModal(showModal ? false : true);
-  };
-
+  //remove um comentário - delete
   const commentaryRemove = () => {
     alert("Remover o comentário");
+  };
+
+
+  //cadastrar um novo comentário - post
+  const postMyComentary = async (idEvento, idUsuario, descricao ) => {
+    alert("cadastrar o comentário");
+
+    try {
+      const promise = await api.post(comentariosEvento, {
+        descricao: descricao,
+        exibe: true,
+        idUsuario: idUsuario,
+        idEvento: idEvento
+      })
+
+    } catch (error) {
+      
+    }
+  };
+ 
+
+  const showHideModal = () => {
+    setShowModal(showModal ? false : true);
   };
 
   async function handleConnect(
@@ -142,11 +165,12 @@ const EventosAlunoPage = () => {
         });
 
         if (promise.status == 201) {
+          loadEventsType();
           alert("obrigado por se cadastrar no evento");
         }
 
-        const todosEventos = await api.get(postNextEventsResource);
-        setEventos(todosEventos.data);
+        // const todosEventos = await api.get(postNextEventsResource);
+        // setEventos(todosEventos.data);
       } catch (error) {
         console.log(error);
       }
@@ -166,11 +190,15 @@ const EventosAlunoPage = () => {
       const unconnect = await api.delete(
         presencaEventoResource + "/" + idPresencaEvento
       );
-      if ((unconnect.status = 204)) {
-        const todosEventos = await api.get(postNextEventsResource);
-        setEventos(todosEventos.data);
+      if ((unconnect.status === 204)) {
+        loadEventsType()
+        alert("desconectamos do evento")
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log("error ao desconectar o usuário do evento");
+      console.log(error);
+
+    }
   }
   return (
     <>
@@ -202,8 +230,10 @@ const EventosAlunoPage = () => {
 
       {showModal ? (
         <Modal
-          userId={userData.userId}
+          userId={userData.idUsuario}
           showHideModal={showHideModal}
+          fnGet={loadMyComentary}
+          fnPost={postMyComentary}
           fnDelete={commentaryRemove}
         />
       ) : null}

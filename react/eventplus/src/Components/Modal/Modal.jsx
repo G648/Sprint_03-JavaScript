@@ -1,7 +1,10 @@
 import React from "react";
 import trashDelete from "../../Assets/images/trash-delete-red.png";
 
-import { Button, Input } from "../../../src/Components/FormComponents/FormComponents";
+import {
+  Button,
+  Input,
+} from "../../../src/Components/FormComponents/FormComponents";
 import "./Modal.css";
 
 const Modal = ({
@@ -10,17 +13,18 @@ const Modal = ({
   userId = null,
   showHideModal = false,
   fnDelete = null,
-  fnNewCommentary = null
-
+  fnNewCommentary = null,
+  fnGet = null,
+  fnPost = null,
 }) => {
-
   return (
     <div className="modal">
       <article className="modal__box">
-        
         <h3 className="modal__title">
           {modalTitle}
-          <span className="modal__close" onClick={()=> showHideModal(true)}>x</span>
+          <span className="modal__close" onClick={() => showHideModal(true)}>
+            x
+          </span>
         </h3>
 
         <div className="comentary">
@@ -43,9 +47,11 @@ const Modal = ({
         />
 
         <Button
-          buttonText="Comentar"
-          className="comentary__button"
-          onClick={fnNewCommentary}
+          textButton="Comentar"
+          additionalClass="comentary__button"
+          manipulationFunction={() => {
+            fnPost()
+          }}
         />
       </article>
     </div>
