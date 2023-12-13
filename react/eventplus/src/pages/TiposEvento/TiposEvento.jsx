@@ -87,7 +87,6 @@ const TiposEvento = () => {
       const retorno = await api.post(postTitleEventsResources, {
         //propriedade do objeto
         titulo: titulo
-
       });
 
       setNotifyUser({

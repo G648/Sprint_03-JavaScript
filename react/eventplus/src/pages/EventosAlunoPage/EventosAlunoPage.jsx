@@ -188,7 +188,7 @@ const EventosAlunoPage = () => {
     //disconnect
     try {
       const unconnect = await api.delete(
-        presencaEventoResource + "/" + idPresencaEvento
+    `${presencaEventoResource}/${idPresencaEvento}`
       );
       if ((unconnect.status === 204)) {
         loadEventsType()

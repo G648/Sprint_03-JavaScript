@@ -15,11 +15,11 @@ export const comentariosEvento = '/ComentariosEvento'
 
 // const apiPort = '7118'
 // const localApiUrl = `https://localhost:${apiPort}/api`
-const localApiUrl = `https://inlockdatabase.azurewebsites.net/`
+const externalApiUrl = `https://inlockdatabase.azurewebsites.net/api`
 // const externalApiUrl = null;
 
 const api = axios.create({
-    baseURL: localApiUrl
+    baseURL: externalApiUrl
 })
 
 

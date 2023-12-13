@@ -24,7 +24,7 @@ const Eventos = () => {
         descricao: "",
         idTipoEvento: "",
         dataEvento: "",
-        idInstituicao: "b5c5648e-9288-4092-9568-3d74f2e7f099"
+        idInstituicao: "5b935299-8e56-4551-a0f8-ec55cfa0c9d9"
 
     })
     const [idEvento, setIdEvento] = useState("")
@@ -97,7 +97,7 @@ const Eventos = () => {
         try {
             setSubmitData({
                 ...submitData,
-                idInstituicao: "b5c5648e-9288-4092-9568-3d74f2e7f099"
+                idInstituicao: "5b935299-8e56-4551-a0f8-ec55cfa0c9d9"
             })
             await api.post(postNextEventsResource, submitData);
 
@@ -249,7 +249,7 @@ const Eventos = () => {
         tipoEventos.map((tp) => {
             const obj = {
                 text : tp.titulo,
-                value : tp.idTIpoEvento
+                value : tp.idTipoEvento
             }
             
             newArray.push(obj)

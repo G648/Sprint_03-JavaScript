@@ -420,18 +420,20 @@
             "description": "Success"
           }
         }
-      },
-      "delete": {
+      }
+    },
+    "/api/PresencaEvento/ListarMinhas/{id}": {
+      "get": {
         "tags": [
           "PresencaEvento"
         ],
         "parameters": [
           {
-            "in": "query",
+            "in": "path",
             "name": "id",
+            "required": true,
             "type": "string",
-            "format": "uuid",
-            "collectionFormat": "multi"
+            "format": "uuid"
           }
         ],
         "responses": {
@@ -441,8 +443,8 @@
         }
       }
     },
-    "/api/PresencaEvento/ListarMinhas/{id}": {
-      "get": {
+    "/api/PresencaEvento/{id}": {
+      "delete": {
         "tags": [
           "PresencaEvento"
         ],

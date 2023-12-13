@@ -31,7 +31,7 @@ namespace webapi.event_.Contexts
             //optionsBuilder.UseSqlServer("Server=NOTE16-S15; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
             //base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer("Server=tcp:inlockserver.database.windows.net,1433;Initial Catalog=inlockdatabase;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;User Id = inlockuser; Pwd = Senai@134;");
+            optionsBuilder.UseSqlServer("Server=tcp:inlockserverevent.database.windows.net,1433;Initial Catalog=inlockdatabase;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;User Id = inlockuser; Pwd = Senai@134;");
             base.OnConfiguring(optionsBuilder);
 
             //optionsBuilder.UseSqlServer("Server=Amorim\\SQLEXPRESS; Database=event+; user Id= sa; pwd=Senai@134; TrustServerCertificate=true;");
