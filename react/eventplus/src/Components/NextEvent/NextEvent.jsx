@@ -6,7 +6,7 @@ import { dateFormatDbToView } from "../../Utils/stringFunctions"
 
 import { Tooltip } from "react-tooltip";
 
-const NextEvent = ({ title, description, eventDate, idEvent, }) => {
+const NextEvent = ({ title, description, eventDate, idEvent }) => {
 
     function conectar(idEvent) {
         alert(`Chamar o recurso para conectar: ${title}`)
